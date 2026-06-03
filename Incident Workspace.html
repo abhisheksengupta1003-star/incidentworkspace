@@ -4,7 +4,154 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>HKJC Incident Workspace V5.0</title>
+<title>HKJC Incident Workspace V6.0</title>
+<style>
+  #qAccordionforSitRep {
+    box-sizing: border-box;
+  }
+
+  #qAccordionforSitRep * {
+    box-sizing: border-box;
+  }
+
+  #qAccordionforSitRep details {
+    padding: 16px;
+  }
+
+  #qAccordionforSitRep .row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  #qAccordionforSitRep .row > div {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  #qAccordionforSitRep input,
+  #qAccordionforSitRep select,
+  #qAccordionforSitRep textarea {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  #qAccordionforHeadsUp {
+    box-sizing: border-box;
+  }
+
+  #qAccordionforHeadsUp * {
+    box-sizing: border-box;
+  }
+
+  #qAccordionforHeadsUp details {
+    padding: 16px;
+  }
+
+  #qAccordionforHeadsUp .row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  #qAccordionforHeadsUp .row > div {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  #qAccordionforHeadsUp input,
+  #qAccordionforHeadsUp select,
+  #qAccordionforHeadsUp textarea {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  #qAccordionforIAP {
+    box-sizing: border-box;
+  }
+
+  #qAccordionforIAP * {
+    box-sizing: border-box;
+  }
+
+  #qAccordionforIAP details {
+    padding: 16px;
+  }
+
+  #qAccordionforIAP .row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  #qAccordionforIAP .row > div {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  #qAccordionforIAP input,
+  #qAccordionforIAP select,
+  #qAccordionforIAP textarea {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  #qAccordionforMilestone {
+    box-sizing: border-box;
+  }
+
+  #qAccordionforMilestone * {
+    box-sizing: border-box;
+  }
+
+  #qAccordionforMilestone details {
+    padding: 16px;
+  }
+
+  #qAccordionforMilestone .row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  #qAccordionforMilestone .row > div {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  #qAccordionforMilestone input,
+  #qAccordionforMilestone select,
+  #qAccordionforMilestone textarea {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  #qAccordionforMilestone .grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  #qAccordionforMilestone .grid-2 {
+    grid-template-columns: 0.8fr 1.8fr;
+  }
+
+  #qAccordionforMilestone .grid-2 > div:first-child {
+    flex: 0.8;
+  }
+
+  #qAccordionforMilestone .grid-2 > div:last-child {
+    flex: 1.8;
+  }
+
+  #qAccordionforMilestone button {
+    height: fit-content;
+    width: fit-content;
+    white-space: nowrap;
+    padding: 10px 16px;
+    align-self: center;
+    margin-top: 10px;
+  }
+</style>
 <style>
 .dr-questionnaire-btn {
   display: inline-flex;
@@ -1055,12 +1202,13 @@ dialog#workLogDialog,
 <body>
   <header>
     <div class="brand">
-      <div class="brand-text"><h1>HKJC Incident Workspace 5.0</h1><div class="brand-sub"></div></div></div>
+      <div class="brand-text"><h1>HKJC Incident Workspace 6.0</h1><div class="brand-sub"></div></div></div>
     <!-- Shared feature tabs -->
     <nav role="tablist" aria-label="Features" id="featureTabs">
-      <button data-tab="sitrep" role="tab" aria-selected="true" aria-controls="sitrep">Sit-Rep</button>
+      <button data-tab="communication" role="tab" aria-selected="true" aria-controls="communication">Communication</button>
+      <!-- <button data-tab="sitrep" role="tab" aria-selected="true" aria-controls="sitrep">Sit-Rep</button> -->
       <button data-tab="questionnaire" role="tab" aria-selected="false" aria-controls="questionnaire">Questionnaire</button>
-      <button data-tab="ws" role="tab" aria-selected="false" aria-controls="ws">Track Workstream</button>
+      <!-- <button data-tab="ws" role="tab" aria-selected="false" aria-controls="ws">Track Workstream</button> -->
       <button data-tab="kpi" role="tab" aria-selected="false" aria-controls="kpi">KPI Builder</button>
       <button data-tab="pm" role="tab" aria-selected="false" aria-controls="pm">PM Generator</button>
       <button data-tab="hypercare" role="tab" aria-selected="false" aria-controls="hypercare">Hypercare Communication</button>
@@ -1277,6 +1425,266 @@ dialog#workLogDialog,
 <!-- DR Clean up 1-->
 <template id="incidentTemplate">
   <section class="incident" data-incident>
+    <section id="communication" class="panel" role="tabpanel" aria-labelledby="tab-communication">
+      <h2>Communication</h2>
+      <div class="q-accordion" id="qAccordionforHeadsUp">
+        <details>
+          <summary>Heads Up</summary>
+          <div class="grid grid-1" style="margin-top:10px;">
+          <div class="text" id="headlineText"><strong>Heads Up - — - — - —</strong></div>
+          
+          </div>
+          <div class="grid grid-2" style="margin-top:10px;">
+            <div><label for="incidentNumber">Incident Number</label><input id="incidentNumber" type="text" placeholder="e.g. INC12345" data-ws-ws-bound="1" data-ws-bound="1"></div>
+            <div><label for="severity">Severity</label>
+              <select id="severity"><option value="">Select Severity</option><option>S1</option><option>S2</option><option>S3</option><option>S4</option></select>
+            </div>
+          </div>
+          <div class="grid grid-1" style="margin-top:10px;">
+            <div><label for="shortDesc">Short Description</label><input id="shortDesc" type="text" placeholder="e.g. System down" data-ws-ws-bound="1" data-ws-bound="1"></div>
+          </div>
+          <button id="copyHeadline" class="btn secondary" style="margin-top:10px;">Copy Heads Up</button>
+        </details>
+      </div>
+      <div class="q-accordion" id="qAccordionforIAP">
+        <details>
+          <summary>Incident Action Plan (IAP)</summary>
+          <div class="grid grid-2" style="margin-top:10px;">
+            <div>
+              <select id="iapStatus">
+                <option value="">Select Status</option>
+                <option>Intial MIM Engagement 1.0</option>
+                <option>Diagnosis 1.1-1.X</option>
+                <option>Concrete Recovery Path Identified 2.0</option>
+                <option>Recovery In Progress 2.1-2.X</option>
+                <option>Service Stabilization and Validation 3.0</option>
+                <option>Post Recovery 4.0</option>
+              </select>
+            </div>
+            </div>
+            <div class="grid grid-1" style="margin-top:10px;">
+              <!-- IAP Tasks Table -->
+                <table class="ws-table" aria-label="IAP Tasks">
+                  <thead>
+                    <tr>
+                  <!-- NEW: Select For Copy (Select-All) -->
+                  <th class="ws-select-col" scope="col" style="width:44px;">
+                    <label style="display:flex; align-items:center; gap:.35rem;">
+                      <input type="checkbox" id="wsSelectAll" aria-label="Select all rows for copy">
+                      <!--<span>Select For Copy</span>-->
+                    </label>
+                  </th>
+
+                      <th class="ws-num-col">#</th>
+                      <th>Task Description</th>
+                      <th style="width:180px;">Task Owner</th>
+                      <th style="width:130px;">Status</th>
+                      <th style="width:130px;">ETA</th>
+                      <th>Result</th>
+                    </tr>
+                  </thead>
+                  <tbody id="wsBody"><tr data-id=""><td class="ws-select-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px; text-align: center;"><input type="checkbox" class="ws-row-select" aria-label="Select row for copy"><a href="#" class="link-remove" style="display: inline-block; margin-left: 6px;">Remove</a></td><td class="ws-num-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px;">1</td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Task description" style="width: 100%;"></textarea></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><input type="text" placeholder="Owner" style="width: 100%;"></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><select><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><div class="ws-eta-cell" style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;"><span class="ws-eta-timer">00:00:43</span><button type="button" class="btn secondary">+10 Min</button><div class="ws-eta-deadline" style="font-size: 12px; color: rgb(10, 42, 102);">Current ETA: 03/06/2026 02:31</div></div></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Result / outcome" style="width: 100%;"></textarea></td></tr><tr data-id="1780424771348"><td class="ws-select-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px; text-align: center;"><input type="checkbox" class="ws-row-select" aria-label="Select row for copy"><a href="#" class="link-remove" style="display: inline-block; margin-left: 6px;">Remove</a></td><td class="ws-num-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px;">2</td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Task description" style="width: 100%;"></textarea></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><input type="text" placeholder="Owner" style="width: 100%;"></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><select><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><div class="ws-eta-cell" style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;"><span class="ws-eta-timer">00:00:43</span><button type="button" class="btn secondary">+10 Min</button><div class="ws-eta-deadline" style="font-size: 12px; color: rgb(10, 42, 102);">Current ETA: 03/06/2026 02:31</div></div></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Result / outcome" style="width: 100%;"></textarea></td></tr><tr data-id="1780424771348"><td class="ws-select-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px; text-align: center;"><input type="checkbox" class="ws-row-select" aria-label="Select row for copy"><a href="#" class="link-remove" style="display: inline-block; margin-left: 6px;">Remove</a></td><td class="ws-num-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px;">3</td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Task description" style="width: 100%;"></textarea></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><input type="text" placeholder="Owner" style="width: 100%;"></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><select><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><div class="ws-eta-cell" style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;"><span class="ws-eta-timer">00:00:43</span><button type="button" class="btn secondary">+10 Min</button><div class="ws-eta-deadline" style="font-size: 12px; color: rgb(10, 42, 102);">Current ETA: 03/06/2026 02:31</div></div></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Result / outcome" style="width: 100%;"></textarea></td></tr></tbody>
+                </table>
+                <div class="ws-actions">
+                  <button id="wsAdd" class="btn btnAdd">+ Add Row</button>
+                  <button id="wsCopyTeams" class="btn secondary" title="Copy the workstreams table (without timers) to clipboard">Copy Incident Action Plan</button>
+                </div>
+            </div>  
+          
+        </details>
+      </div>
+      <div class="q-accordion" id="qAccordionforMilestone">
+        <details>
+          <summary>Milestone Communication</summary>
+          <div class="grid grid-2" style="margin-top:10px;">
+            <div><label for="milestoneDate">Milestone Date & Time</label><input id="milestoneDateTime" type="datetime-local"></div>
+            <div><label for="milestoneDescription">Milestone Description</label><input id="milestoneDescription" type="text" placeholder="e.g. Recovery completed"></div>
+          </div>
+          <div class="grid grid-1" style="margin-top:10px;">
+            
+            <button id="wsCopyMileStone" class="btn secondary" title="Copy Milestone Details">Copy Milestone Details</button>
+          </div>
+        </details> 
+      </div>
+
+
+
+<div class="q-accordion" id="qAccordionforSitRep">
+  <details>
+    <summary>Sit‑Rep</summary>
+
+    <div class="dr-toggle-wrap">
+      <span class="dr-toggle-label">DR Sit‑Rep</span>
+
+      <label class="switch">
+        <input type="checkbox" id="drToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div id="drContainer" style="display:none; margin-top:16px;">
+      <div class="dr-input-row">
+        <div class="dr-input-group">
+          <label for="appJsonInput">Application-CBA JSON</label>
+          <input type="file" id="appJsonInput" accept=".json">
+
+          <label for="impactedSiteDropdown">Impacted Site</label>
+          <select id="impactedSiteDropdown">
+            <option value="">Select Site</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;">
+        <label>Recovered Applications (comma separated system codes):
+
+          <button id="refreshSituationBtn" class="refresh-btn" type="button">
+            <svg class="refresh-icon" viewBox="0 0 64 64" aria-hidden="true">
+              <!-- Top arrow -->
+              <path d="M46 14 C36 4 20 6 14 18 h8 l-12 14 l-12-14 h8 C10 6 30 0 44 12 Z" fill="currentColor"/>
+              <!-- Bottom arrow -->
+              <path d="M18 50 C28 60 44 58 50 46 h-8 l12-14 l12 14 h-8 C54 58 34 64 20 52 Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </label>
+        <textarea id="recoveredApps" rows="3" style="width:100%;"></textarea>
+      </div>
+
+      <div class="dr-questionnaire-only">
+        <button class="btn dr-questionnaire-btn" type="button" id="drQuestionnaireBtn">
+          <svg class="dr-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <!-- Clipboard body -->
+            <rect x="6" y="4" width="12" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            <!-- Clip -->
+            <rect x="9" y="2" width="6" height="4" rx="1" fill="currentColor"/>
+            <!-- Checklist lines -->
+            <path d="M9 11h6M9 14h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <!-- Check mark -->
+            <path d="M8 16l2 2l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Fill DR Questionnaire
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="updateCode">Update Number</label>
+        <select id="updateCode">
+          <option value="">— Select Status —</option>
+          <optgroup label="1.x – Investigation">
+            <option value="1.1">1.1 – Incident is raised. Under investigation.</option>
+            <option value="1.2">1.2 – Issue has been clarified as low severity incident.</option>
+          </optgroup>
+          <optgroup label="2.x – Major Incident">
+            <option value="2.1">2.1 – Major Incident is declared. Under investigation.</option>
+            <option value="2.2">2.2 – Major Incident is downgraded to S3.</option>
+          </optgroup>
+          <optgroup label="3.x – Progress">
+            <option value="3.1">3.1 – Investigation still ongoing.</option>
+            <option value="3.2">3.2 – Possible solutions identified.</option>
+          </optgroup>
+          <optgroup label="4.x – Implementation">
+            <option value="4.1">4.1 – Testing unsuccessful. Under Investigation.</option>
+            <option value="4.2">4.2 – Solution implementation still ongoing.</option>
+            <option value="4.3">4.3 – Solution implemented. IT confirming service stability.</option>
+          </optgroup>
+          <optgroup label="5.x – IT Confirmation">
+            <option value="5.1">5.1 – Service stability confirmed by IT. Confirming with User.</option>
+            <option value="5.2">5.2 – IT still confirming service stability.</option>
+            <option value="5.3">5.3 – Service not stable. Under investigation.</option>
+          </optgroup>
+          <optgroup label="6.x – User Confirmation">
+            <option value="6.1">6.1 – Still awaiting user confirmation.</option>
+            <option value="6.2">6.2 – User confirmed not restored.</option>
+            <option value="6.3">6.3 – User confirmed service restoration.</option>
+          </optgroup>
+        </select>
+      </div>
+      <div>
+        <label for="startTs">Incident Start Datetime</label>
+        <input id="startTs" type="datetime-local"/>
+        <div class="hint">Defaults to current datetime</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div><label for="imtLead">IMT Leader</label><input id="imtLead" type="text"/></div>
+      <div><label for="imtSupport">IMT Support</label><input id="imtSupport" type="text"/></div>
+    </div>
+
+    <label for="situation">Situation <span class="badge">Required</span>
+      <button type="button" id="copyDrRecoveryBtn" class="btn secondary" style="display:none;" title="Copy Recovery Progress (DR)">
+        Copy
+      </button>
+      <input type="checkbox" id="includeDrInSitrepChk" style="display: none;" checked />
+      <span id="includeDrInSitrepLabel">Include In Sit‑Rep</span>
+    </label>
+
+    <!-- Normal Sit‑Rep Situation -->
+    <textarea id="situation" placeholder="Describe the situation clearly"></textarea>
+
+    <!-- DR Sit‑Rep Situation Table (replaces textarea when DR ON) -->
+    <div id="drSituationContainer" style="display:none;">
+      <table class="dr-situation-table" width="100%">
+        <thead>
+          <tr>
+            <th>Impacted Service</th>
+            <th>Total Applications Impacted</th>
+            <th>% Recovered</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- rows injected by JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <div>
+        <label for="impactAreas">Impacted Areas
+          <button id="searchImpactedCbas" title="Find impacted CBAs" style="border:none; background:none; cursor:pointer; font-size:14px">🔍</button>
+        </label>
+        <input id="impactAreas" type="text" placeholder="Systems / business areas"/>
+      </div>
+      <div>
+        <label for="mttr">MTTR</label>
+        <input id="mttr" type="text" placeholder="e.g., 1h 25m"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div><label for="custEnq">Customer Enquiry</label><input id="custEnq" type="text"/></div>
+      <div><label for="mediaEnq">Media Enquiry</label><input id="mediaEnq" type="text"/></div>
+    </div>
+
+    <label for="keyIMT">Key IMT Discussion</label>
+    <textarea id="keyIMT" placeholder="Key discussions, decisions, next steps"></textarea>
+
+    <div class="row">
+      <div>
+        <label>Sequence Of Events</label>
+        <div class="actions" style="display:flex; gap:8px; align-items:center;">
+          <button class="btn secondary" id="openWorkLog">Open Work Log</button>
+          <span class="hint">Enter inserts a new timestamped line</span>
+        </div>
+      </div>
+      <div>
+        <label for="nextUpdate">Next Update</label>
+        <input id="nextUpdate" type="datetime-local"/>
+        <div class="hint">Defaults to +15 minutes from now</div>
+      </div>
+    </div>
+
+    <div class="actions" style="margin-top:8px;">
+      <button id="copyPreview" class="btn warn">Copy Preview for Teams</button>
+      <span class="hint">Copies the table only (excludes headline)</span>
+    </div>
+
+  </details>
+</div>
+
+      </section>
 
     <!-- ========== Sit-Rep (IDs preserved) ========== -->
     <section id="sitrep" class="panel" role="tabpanel" aria-labelledby="tab-sitrep">
@@ -3047,7 +3455,7 @@ const changeables = root.querySelectorAll(
       const selectedRows = Array.from(tbody.rows).filter(row => row.querySelector('.ws-row-select')?.checked);
       const thStyle = "text-align:left;border:1px solid #ccc;padding:6px;background:#eef3ff;font-weight:700;color:#134094;";
       const tdStyle = "text-align:left;border:1px solid #ccc;padding:6px;vertical-align:top;";
-      const titleRow = `<tr><th colspan="6" style="${thStyle}">Workstreams</th></tr>`;
+      const titleRow = `<tr><th colspan="6" style="${thStyle}">Incident Action Plan</th></tr>`;
       const headerRow = `<tr>${headers.map(h => `<th style="${thStyle}">${h}</th>`).join('')}</tr>`;
       const dataRows = selectedRows.map(row => {
         const cells = Array.from(row.cells).slice(1);
@@ -3076,7 +3484,8 @@ const changeables = root.querySelectorAll(
       const headCells = Array.from(table.tHead.rows[0].cells);
       const headers = headCells.slice(1).map(th => th.textContent.trim());
       const lines = [];
-      lines.push(['Workstreams', '', '', '', '', ''].join('\t'));
+      var title = 'Incident Action Plan';
+      lines.push([title, '', '', '', '', ''].join('\t'));
       lines.push(headers.join('\t'));
       const selectedRows = Array.from(tbody.rows).filter(row => row.querySelector('.ws-row-select')?.checked);
       selectedRows.forEach(row => {
@@ -6470,7 +6879,7 @@ if (window._pillBacklog && window.tagInputs) {
 
   return (
     '<div style="font-family:Calibri,Segoe UI,Arial,sans-serif;font-size:14px;color:#0f172a;">' +
-      '<div style="font-weight:700;font-size:16px;margin-bottom:6px;color:'+SITREP_BLUE+';">Workstreams</div>' +
+      '<div style="font-weight:700;font-size:16px;margin-bottom:6px;color:'+SITREP_BLUE+';">Incident Action Plan</div>' +
       '<table style="width:100%;border-collapse:collapse;">' +
         head + body +
       '</table>' +
@@ -6500,7 +6909,8 @@ if (window._pillBacklog && window.tagInputs) {
         out.push([String(i+1), d, o, sv, (e && e !== '— ETA —' ? e : '—'), r]);
       });
     }
-    if (!out.length) return 'Workstreams\n(No data)';
+    var iAPHeading ="Incident Action Plan";
+    if (!out.length) return iAPHeading + '\n(No data)';
     var header=['#','Task Description','Task Owner','Status','ETA','Result'];
     return [header.join('\t')].concat(out.map(function(r){return r.join('\t');})).join('\n');
   }
@@ -11140,6 +11550,82 @@ function copyPlainTextForQuestionnaire(text) {
   navigator.clipboard.writeText(text);
 }
 window.copyPlainTextForQuestionnaire = copyPlainTextForQuestionnaire;
+
+</script>
+
+<script>
+
+  // Copy Milestone Details button functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const copyMilestoneBtn = document.getElementById('wsCopyMileStone');
+  
+  if (copyMilestoneBtn) {
+    copyMilestoneBtn.addEventListener('click', copyMilestoneDetails);
+  }
+});
+
+function copyMilestoneDetails() {
+  const milestoneDateTime = document.getElementById('milestoneDateTime').value.replace('T', ' ');
+  const milestoneDescription = document.getElementById('milestoneDescription').value;
+  const decisionsTextarea = document.getElementById('decisions');
+  
+  // Validate inputs
+  if (!milestoneDateTime || !milestoneDescription) {
+    alert('Please fill in both Milestone Date & Time and Milestone Description');
+    return;
+  }
+  
+  // Format the milestone entries
+  const milestoneEntryPlain = `${milestoneDateTime} — ${milestoneDescription}`;
+  
+  // Check if milestone already exists in textarea
+  const existingContent = decisionsTextarea.value;
+  if (existingContent.includes(milestoneEntryPlain)) {
+    alert('This milestone is already present in Sequence of Events');
+    return;
+  }
+  
+  // Create formatted text for clipboard (with HTML for bold and red [Milestone] tag)
+  const htmlContent = `<span style="color: red; font-weight: bold;">[Milestone]</span> ${milestoneDateTime} — ${milestoneDescription}`;
+  const plainTextCopy = `[Milestone] ${milestoneDateTime} — ${milestoneDescription}`;
+  
+  // Copy formatted HTML to clipboard
+  const blob = new Blob([htmlContent], { type: 'text/html' });
+  const richTextEntry = new ClipboardItem({ 
+    'text/html': blob, 
+    'text/plain': new Blob([plainTextCopy], { type: 'text/plain' }) 
+  });
+  
+  navigator.clipboard.write([richTextEntry]).then(() => {
+    // Add plain text to Sequence of Events textarea
+    if (decisionsTextarea.value) {
+      decisionsTextarea.value += '\n' + milestoneEntryPlain;
+    } else {
+      decisionsTextarea.value = milestoneEntryPlain;
+    }
+    
+    alert('Copied and Captured in Sequence of Events');
+  }).catch(() => {
+    // Fallback for older browsers - copy plain text
+    const textarea = document.createElement('textarea');
+    textarea.value = plainTextCopy;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    
+    // Add to textarea
+    if (decisionsTextarea.value) {
+      decisionsTextarea.value += '\n' + milestoneEntryPlain;
+    } else {
+      decisionsTextarea.value = milestoneEntryPlain;
+    }
+    
+    alert('Copied and Captured in Sequence of Events');
+  });
+}
+
+
 
 </script>
 
