@@ -1451,20 +1451,27 @@ dialog#workLogDialog,
           <summary>Incident Action Plan (IAP)</summary>
           <div class="grid grid-2" style="margin-top:10px;">
             <div>
+              <label for="iapStatus">IAP Status</label>
               <select id="iapStatus">
                 <option value="">Select Status</option>
-                <option>Intial MIM Engagement 1.0</option>
-                <option>Diagnosis 1.1-1.X</option>
-                <option>Concrete Recovery Path Identified 2.0</option>
-                <option>Recovery In Progress 2.1-2.X</option>
-                <option>Service Stabilization and Validation 3.0</option>
-                <option>Post Recovery 4.0</option>
+                <option value="Initial MIM Engagement">Initial MIM Engagement</option>
+                <option value="Diagnosis">Diagnosis</option>
+                <option value="Concrete Recovery Path Identified">Concrete Recovery Path Identified</option>
+                <option value="Recovery In Progress">Recovery In Progress</option>
+                <option value="Service Stabilization and Validation">Service Stabilization and Validation</option>
+                <option value="Post Recovery">Post Recovery</option>
               </select>
             </div>
+            <div>
+              
+              <label>Version</label><span id="versionNumber" style="font-weight:bold; font-size:1.1em;">1.0</span>
+              <button id="newIap" class="btn secondary" style="margin-left:8px;">+New</button>
             </div>
+            </div>
+            <div id="versionPillsContainer" style="margin-top:10px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;"></div>
             <div class="grid grid-1" style="margin-top:10px;">
               <!-- IAP Tasks Table -->
-                <table class="ws-table" aria-label="IAP Tasks">
+                <table class="ws-table iap-table" data-version="1.0" aria-label="IAP Tasks">
                   <thead>
                     <tr>
                   <!-- NEW: Select For Copy (Select-All) -->
@@ -1479,11 +1486,13 @@ dialog#workLogDialog,
                       <th>Task Description</th>
                       <th style="width:180px;">Task Owner</th>
                       <th style="width:130px;">Status</th>
-                      <th style="width:130px;">ETA</th>
+                      <th style="width:220px;">Start time</th>
+                      <th style="width:220px;">Completion time</th>
+                      <th style="width:220px;">ETA</th>
                       <th>Result</th>
                     </tr>
                   </thead>
-                  <tbody id="wsBody"><tr data-id=""><td class="ws-select-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px; text-align: center;"><input type="checkbox" class="ws-row-select" aria-label="Select row for copy"><a href="#" class="link-remove" style="display: inline-block; margin-left: 6px;">Remove</a></td><td class="ws-num-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px;">1</td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Task description" style="width: 100%;"></textarea></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><input type="text" placeholder="Owner" style="width: 100%;"></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><select><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><div class="ws-eta-cell" style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;"><span class="ws-eta-timer">00:00:43</span><button type="button" class="btn secondary">+10 Min</button><div class="ws-eta-deadline" style="font-size: 12px; color: rgb(10, 42, 102);">Current ETA: 03/06/2026 02:31</div></div></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Result / outcome" style="width: 100%;"></textarea></td></tr><tr data-id="1780424771348"><td class="ws-select-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px; text-align: center;"><input type="checkbox" class="ws-row-select" aria-label="Select row for copy"><a href="#" class="link-remove" style="display: inline-block; margin-left: 6px;">Remove</a></td><td class="ws-num-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px;">2</td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Task description" style="width: 100%;"></textarea></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><input type="text" placeholder="Owner" style="width: 100%;"></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><select><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><div class="ws-eta-cell" style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;"><span class="ws-eta-timer">00:00:43</span><button type="button" class="btn secondary">+10 Min</button><div class="ws-eta-deadline" style="font-size: 12px; color: rgb(10, 42, 102);">Current ETA: 03/06/2026 02:31</div></div></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Result / outcome" style="width: 100%;"></textarea></td></tr><tr data-id="1780424771348"><td class="ws-select-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px; text-align: center;"><input type="checkbox" class="ws-row-select" aria-label="Select row for copy"><a href="#" class="link-remove" style="display: inline-block; margin-left: 6px;">Remove</a></td><td class="ws-num-col" style="vertical-align: top; border: 1px solid var(--border); padding: 8px;">3</td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Task description" style="width: 100%;"></textarea></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><input type="text" placeholder="Owner" style="width: 100%;"></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><select><option value="Ongoing">Ongoing</option><option value="Completed">Completed</option></select></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><div class="ws-eta-cell" style="display: flex; flex-direction: column; align-items: flex-start; gap: 6px;"><span class="ws-eta-timer">00:00:43</span><button type="button" class="btn secondary">+10 Min</button><div class="ws-eta-deadline" style="font-size: 12px; color: rgb(10, 42, 102);">Current ETA: 03/06/2026 02:31</div></div></td><td style="vertical-align: top; border: 1px solid var(--border); padding: 8px;"><textarea placeholder="Result / outcome" style="width: 100%;"></textarea></td></tr></tbody>
+                  <tbody id="wsBody"></tbody>
                 </table>
                 <div class="ws-actions">
                   <button id="wsAdd" class="btn btnAdd">+ Add Row</button>
@@ -3447,7 +3456,7 @@ const changeables = root.querySelectorAll(
     // ---------- Builders ----------
     function clean(v){ return String(v ?? '').replace(/\t/g,' ').replace(/\r/g,' ').replace(/\n/g,' ').trim(); }
     const dash = '—';
-    const normETA = (v) => { v = (v ?? '').trim(); return (v === '— ETA —' || v === '') ? dash : v; };
+    const normETA = (v) => { v = (v ?? '').trim(); return v === '' ? dash : v; };
 
     function buildHTMLFromSelection(){ let seq=1;
       const headCells = Array.from(table.tHead.rows[0].cells);
@@ -3455,17 +3464,19 @@ const changeables = root.querySelectorAll(
       const selectedRows = Array.from(tbody.rows).filter(row => row.querySelector('.ws-row-select')?.checked);
       const thStyle = "text-align:left;border:1px solid #ccc;padding:6px;background:#eef3ff;font-weight:700;color:#134094;";
       const tdStyle = "text-align:left;border:1px solid #ccc;padding:6px;vertical-align:top;";
-      const titleRow = `<tr><th colspan="6" style="${thStyle}">Incident Action Plan</th></tr>`;
+      const titleRow = `<tr><th colspan="8" style="${thStyle}">Incident Action Plan</th></tr>`;
       const headerRow = `<tr>${headers.map(h => `<th style="${thStyle}">${h}</th>`).join('')}</tr>`;
       const dataRows = selectedRows.map(row => {
         const cells = Array.from(row.cells).slice(1);
         const vals = cells.map((td, idx) => {
- if (idx === 0) { return String(seq++); }
+          if (idx === 0) { return String(seq++); }
           if (idx === 1) { const el = td.querySelector('textarea'); return clean(el?.value) || dash; }
           if (idx === 2) { const el = td.querySelector('input');    return clean(el?.value) || dash; }
           if (idx === 3) { const el = td.querySelector('select');   return (el?.value ?? '').trim() || dash; }
-          if (idx === 4) { const el = td.querySelector('select');   return normETA(el?.value); }
-          if (idx === 5) { const el = td.querySelector('textarea'); return clean(el?.value) || dash; }
+          if (idx === 4) { const el = td.querySelector('input[type="datetime-local"]'); return normETA(el?.value); }
+          if (idx === 5) { const el = td.querySelector('input[type="datetime-local"]'); return normETA(el?.value); }
+          if (idx === 6) { const el = td.querySelector('input[type="datetime-local"]'); return normETA(el?.value); }
+          if (idx === 7) { const el = td.querySelector('textarea'); return clean(el?.value) || dash; }
           return (td.textContent ?? '').replace(/\s+/g,' ').trim();
         });
         return `<tr>${vals.map(v => `<td style="${tdStyle}">${v}</td>`).join('')}</tr>`;
@@ -3485,18 +3496,20 @@ const changeables = root.querySelectorAll(
       const headers = headCells.slice(1).map(th => th.textContent.trim());
       const lines = [];
       var title = 'Incident Action Plan';
-      lines.push([title, '', '', '', '', ''].join('\t'));
+      lines.push([title, '', '', '', '', '', '', ''].join('\t'));
       lines.push(headers.join('\t'));
       const selectedRows = Array.from(tbody.rows).filter(row => row.querySelector('.ws-row-select')?.checked);
       selectedRows.forEach(row => {
         const cells = Array.from(row.cells).slice(1);
         const vals = cells.map((td, idx) => {
- if (idx === 0) { return String(seq++); }
+          if (idx === 0) { return String(seq++); }
           if (idx === 1) { const el = td.querySelector('textarea'); return clean(el?.value) || dash; }
           if (idx === 2) { const el = td.querySelector('input');    return clean(el?.value) || dash; }
           if (idx === 3) { const el = td.querySelector('select');   return (el?.value ?? '').trim() || dash; }
-          if (idx === 4) { const el = td.querySelector('select');   return normETA(el?.value); }
-          if (idx === 5) { const el = td.querySelector('textarea'); return clean(el?.value) || dash; }
+          if (idx === 4) { const el = td.querySelector('input[type="datetime-local"]'); return normETA(el?.value); }
+          if (idx === 5) { const el = td.querySelector('input[type="datetime-local"]'); return normETA(el?.value); }
+          if (idx === 6) { const el = td.querySelector('input[type="datetime-local"]'); return normETA(el?.value); }
+          if (idx === 7) { const el = td.querySelector('textarea'); return clean(el?.value) || dash; }
           return (td.textContent ?? '').replace(/\s+/g,' ').trim();
         });
         lines.push(vals.join('\t'));
@@ -4816,66 +4829,41 @@ function addWsRow(root){
   ['Ongoing', 'Completed'].forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; statusSel.appendChild(o); });
   c3.appendChild(statusSel);
 
-  // --- Column 5: Timer + +10 Min button (below timer) + Current ETA label ---
+  // --- Column 5: Start time ---
   const c4 = makeTd();
-  const etaWrap = document.createElement('div');
-  etaWrap.className = 'ws-eta-cell';
-  etaWrap.style.display = 'flex';
-  etaWrap.style.flexDirection = 'column';
-  etaWrap.style.alignItems = 'flex-start';
-  etaWrap.style.gap = '6px';
+  const startInput = document.createElement('input');
+  startInput.type = 'datetime-local';
+  startInput.style.width = '100%';
+  c4.appendChild(startInput);
 
-  // timer display
-  const span = document.createElement('span');
-  span.className = 'ws-eta-timer';
-  span.textContent = '00:00:00';
-
-  // +10 Min button BELOW the timer
-  const extendBtn = document.createElement('button');
-  extendBtn.type = 'button';
-  extendBtn.className = 'btn secondary';
-  extendBtn.textContent = '+10 Min';
-
-  // Current ETA label
-  const etaLbl = document.createElement('div');
-  etaLbl.className = 'ws-eta-deadline';
-  etaLbl.style.fontSize = '12px';
-  etaLbl.style.color = '#0a2a66';
-
-  etaWrap.append(span, extendBtn, etaLbl);
-  c4.appendChild(etaWrap);
-
-  // --- Column 6: Result / outcome ---
+  // --- Column 6: Completion time ---
   const c5 = makeTd();
+  const completionInput = document.createElement('input');
+  completionInput.type = 'datetime-local';
+  completionInput.style.width = '100%';
+  c5.appendChild(completionInput);
+
+  // --- Column 7: ETA ---
+  const c6 = makeTd();
+  const etaInput = document.createElement('input');
+  etaInput.type = 'datetime-local';
+  etaInput.style.width = '100%';
+  c6.appendChild(etaInput);
+
+  // --- Column 8: Result / outcome ---
+  const c7 = makeTd();
   const d2 = document.createElement('textarea');
   d2.placeholder = 'Result / outcome';
   d2.style.width = '100%';
-  c5.appendChild(d2);
+  c7.appendChild(d2);
 
   // Append row
-  tr.append(cSel, c0, c1, c2, c3, c4, c5);
+  tr.append(cSel, c0, c1, c2, c3, c4, c5, c6, c7);
   tb.appendChild(tr);
 
-  // ================== Timer + ETA-breach logic ==================
-  let start = Date.now();
-  let acc = 0;           // accumulated ms when paused
-  let ticking = true;    // whether the timer is currently running
-  // DEFAULT ETA deadline = now + 5 minutes
-  let etaDeadline = Date.now() + 5 * 60 * 1000;
+  // ================== ETA breach logic ==================
   let rowBreached = false;    // last known breach state for this row
   const incidentId = root.dataset.incidentId || null; // for PillBreach
-
-  function fmtTime(ms){
-    ms = Math.max(0, ms || 0);
-    const s = Math.floor(ms / 1000);
-    const h = String(Math.floor(s / 3600)).padStart(2, '0');
-    const m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
-    const ss = String(s % 60).padStart(2, '0');
-    return h + ':' + m + ':' + ss;
-  }
-  function pad(n){ return String(n).padStart(2,'0'); }
-  function fmtEta(ts){ const d=new Date(ts); return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`; }
-  function renderEta(){ etaLbl.textContent = `Current ETA: ${fmtEta(etaDeadline)}`; }
 
   // Use the same strong blink you already defined for WS rows
   function applyBlink(){
@@ -4901,37 +4889,16 @@ function addWsRow(root){
   }
 
   function checkBreach(){
-    const breached = (String(statusSel.value || '').toLowerCase() === 'ongoing') && (Date.now() >= etaDeadline);
+    const etaValue = etaInput.value;
+    const deadline = etaValue ? new Date(etaValue).valueOf() : NaN;
+    const breached = (String(statusSel.value || '').toLowerCase() === 'ongoing') && !Number.isNaN(deadline) && (Date.now() >= deadline);
     if (breached) applyBlink(); else clearBlink();
     setPillBreach(breached);
   }
 
-  function tick(){
-    if (!tr.isConnected) return; // row removed from DOM
-    const ms = acc + (ticking ? (Date.now() - start) : 0);
-    span.textContent = fmtTime(ms);
-    checkBreach();
-    requestAnimationFrame(tick);
-  }
-  tick();
-
-  // Status changed → start/stop timer + re-evaluate breach
-  statusSel.addEventListener('change', () => {
-    const v = String(statusSel.value || '');
-    if (/^ongoing$/i.test(v) && !ticking) { ticking = true; start = Date.now(); }
-    if (/^completed$/i.test(v) && ticking) { acc += (Date.now() - start); ticking = false; clearBlink(); }
-    checkBreach();
-  });
-
-  // Extend ETA by +10 minutes each click
-  extendBtn.addEventListener('click', () => {
-    etaDeadline += 10 * 60 * 1000; // add 10 minutes from current deadline
-    renderEta();
-    checkBreach();
-  });
-
-  // Initial ETA label
-  renderEta();
+  statusSel.addEventListener('change', checkBreach);
+  etaInput.addEventListener('change', checkBreach);
+  checkBreach();
 
   // Remove link handler (also renumber rows)
   rm.addEventListener('click', (e) => {
@@ -5136,13 +5103,15 @@ function collectWorkstreams(root){
   const rows = [];
   root.querySelectorAll('#wsBody tr').forEach(tr => {
     const tds = tr.querySelectorAll('td');
-    if (tds.length < 6) return;
+    if (tds.length < 8) return;
     rows.push({
-      desc:   tds[1].querySelector('textarea')?.value ?? '',
-      owner:  tds[2].querySelector('input')?.value ?? '',
-      status: tds[3].querySelector('select')?.value ?? 'Ongoing',
-      eta:    tds[4].querySelector('select')?.value ?? '— ETA —',
-      result: tds[5].querySelector('textarea')?.value ?? ''
+      desc:       tds[1].querySelector('textarea')?.value ?? '',
+      owner:      tds[2].querySelector('input')?.value ?? '',
+      status:     tds[3].querySelector('select')?.value ?? 'Ongoing',
+      start:      tds[4].querySelector('input[type="datetime-local"]')?.value ?? '',
+      completion: tds[5].querySelector('input[type="datetime-local"]')?.value ?? '',
+      eta:        tds[6].querySelector('input[type="datetime-local"]')?.value ?? '',
+      result:     tds[7].querySelector('textarea')?.value ?? ''
     });
   });
   return rows;
@@ -5159,8 +5128,10 @@ function applyWorkstreams(root, rows=[]){
     tds[1].querySelector('textarea').value = r.desc ?? '';
     tds[2].querySelector('input').value    = r.owner ?? '';
     tds[3].querySelector('select').value   = r.status ?? 'Ongoing';
-    tds[4].querySelector('select').value   = r.eta ?? '— ETA —';
-    tds[5].querySelector('textarea').value = r.result ?? '';
+    tds[4].querySelector('input[type="datetime-local"]').value = r.start ?? '';
+    tds[5].querySelector('input[type="datetime-local"]').value = r.completion ?? '';
+    tds[6].querySelector('input[type="datetime-local"]').value = r.eta ?? '';
+    tds[7].querySelector('textarea').value = r.result ?? '';
   });
 }
 
@@ -6832,22 +6803,28 @@ if (window._pillBacklog && window.tagInputs) {
       var dEl = tr.querySelector("td:nth-child(2) textarea");
       var oEl = tr.querySelector("td:nth-child(3) input");
       var sEl = tr.querySelector("td:nth-child(4) select");
-      var eEl = tr.querySelector("td:nth-child(5) .ws-eta-timer");
-      var rEl = tr.querySelector("td:nth-child(6) textarea");
+      var startEl = tr.querySelector("td:nth-child(5) input[type=datetime-local]");
+      var endEl = tr.querySelector("td:nth-child(6) input[type=datetime-local]");
+      var eEl = tr.querySelector("td:nth-child(7) input[type=datetime-local]");
+      var rEl = tr.querySelector("td:nth-child(8) textarea");
 
       var d = dEl?.value.trim() || "";
       var o = oEl?.value.trim() || "";
       var s = sEl?.value || "";
-      var e = eEl?.textContent || "";
+      var start = startEl?.value || "";
+      var end = endEl?.value || "";
+      var e = eEl?.value || "";
       var r = rEl?.value.trim() || "";
 
-      if (!(d||o||s||e||r)) return;
+      if (!(d||o||s||start||end||e||r)) return;
 
       rows.push({
         idx: String(i+1),
         desc: nl2br(esc(d)),
         owner: esc(o),
         status: esc(s),
+        start: esc(start || '—'),
+        completion: esc(end || '—'),
         eta: esc(e || '—'),
         result: nl2br(esc(r))
       });
@@ -6862,7 +6839,9 @@ if (window._pillBacklog && window.tagInputs) {
       '<td style="'+th+'">Task Description</td>' +
       '<td style="'+th+'width:180px;">Task Owner</td>' +
       '<td style="'+th+'width:130px;">Status</td>' +
-      '<td style="'+th+'width:130px;">ETA</td>' +
+      '<td style="'+th+'width:200px;">Start time</td>' +
+      '<td style="'+th+'width:200px;">Completion time</td>' +
+      '<td style="'+th+'width:200px;">ETA</td>' +
       '<td style="'+th+'">Result</td>' +
     '</tr>';
 
@@ -6872,6 +6851,8 @@ if (window._pillBacklog && window.tagInputs) {
       '<td style="'+td+'">'+(r.desc||'—')+'</td>' +
       '<td style="'+td+'">'+(r.owner||'—')+'</td>' +
       '<td style="'+td+'">'+(r.status||'—')+'</td>' +
+      '<td style="'+td+'">'+(r.start||'—')+'</td>' +
+      '<td style="'+td+'">'+(r.completion||'—')+'</td>' +
       '<td style="'+td+'">'+(r.eta||'—')+'</td>' +
       '<td style="'+td+'">'+(r.result||'—')+'</td>' +
     '</tr>';
@@ -6896,22 +6877,26 @@ if (window._pillBacklog && window.tagInputs) {
         var dEl = tr.querySelector("td:nth-child(2) textarea");
         var oEl = tr.querySelector("td:nth-child(3) input");
         var sEl = tr.querySelector("td:nth-child(4) select");
-        var eEl = tr.querySelector("td:nth-child(5) .ws-eta-timer");
-        var rEl = tr.querySelector("td:nth-child(6) textarea");
+        var startEl = tr.querySelector("td:nth-child(5) input[type=datetime-local]");
+        var endEl = tr.querySelector("td:nth-child(6) input[type=datetime-local]");
+        var eEl = tr.querySelector("td:nth-child(7) input[type=datetime-local]");
+        var rEl = tr.querySelector("td:nth-child(8) textarea");
         var d = (dEl? dEl.value : "").trim();
         var o = (oEl? oEl.value : "").trim();
         var sv = (sEl? sEl.value : "");
-        var e = (eEl ? eEl.textContent : "");
+        var start = (startEl? startEl.value : "");
+        var end = (endEl? endEl.value : "");
+        var e = (eEl ? eEl.value : "");
         var r = (rEl? rEl.value : "").trim();
-        if (!(d||o||sv||e||r)) return;
+        if (!(d||o||sv||start||end||e||r)) return;
         d = String(d).replace(new RegExp('\r?\n','g'), ' / ');
         r = String(r).replace(new RegExp('\r?\n','g'), ' / ');
-        out.push([String(i+1), d, o, sv, (e && e !== '— ETA —' ? e : '—'), r]);
+        out.push([String(i+1), d, o, sv, start || '—', end || '—', e || '—', r]);
       });
     }
     var iAPHeading ="Incident Action Plan";
     if (!out.length) return iAPHeading + '\n(No data)';
-    var header=['#','Task Description','Task Owner','Status','ETA','Result'];
+    var header=['#','Task Description','Task Owner','Status','Start time','Completion time','ETA','Result'];
     return [header.join('\t')].concat(out.map(function(r){return r.join('\t');})).join('\n');
   }
   
@@ -7543,11 +7528,13 @@ window.PillBreach = (() => {
     const wsRows = $$('#wsBody tr', root).map(tr=>{
       const t = q=> tr.querySelector(q);
       return {
-        desc:   t('td:nth-child(2) textarea')?.value ?? '',
-        owner:  t('td:nth-child(3) input')?.value ?? '',
-        status: t('td:nth-child(4) select')?.value ?? '',
-        eta:    t('td:nth-child(5) .ws-eta-select')?.value ?? '',
-        result: t('td:nth-child(6) textarea')?.value ?? ''
+        desc:       t('td:nth-child(2) textarea')?.value ?? '',
+        owner:      t('td:nth-child(3) input')?.value ?? '',
+        status:     t('td:nth-child(4) select')?.value ?? '',
+        start:      t('td:nth-child(5) input[type="datetime-local"]')?.value ?? '',
+        completion: t('td:nth-child(6) input[type="datetime-local"]')?.value ?? '',
+        eta:        t('td:nth-child(7) input[type="datetime-local"]')?.value ?? '',
+        result:     t('td:nth-child(8) textarea')?.value ?? ''
       };
     });
 
@@ -9990,8 +9977,10 @@ window.setWorkspaceActive = setWorkspaceActive;
 
 </script>
 <script>
-    document.getElementById('searchImpactedCbas')
-  .addEventListener('click', openCbaImpactSearch);
+    const searchBtn = document.getElementById('searchImpactedCbas');
+    if (searchBtn) {
+      searchBtn.addEventListener('click', openCbaImpactSearch);
+    }
 
 
 const SYSTEM_ALIASES = {
